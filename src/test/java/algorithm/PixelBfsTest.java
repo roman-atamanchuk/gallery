@@ -1,10 +1,12 @@
 package algorithm;
 
 import javafx.geometry.Point2D;
+import javafx.scene.image.Image;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 import org.junit.jupiter.api.Test;
+import util.MapMaskBuilder;
 
 import java.util.List;
 
@@ -30,6 +32,29 @@ class PixelBfsTest {
 
         PixelBFS pixelBfs = new PixelBFS();
         List<Point2D> path = pixelBfs.findShortestPath(image, 5, 5, new Point2D(0, 2), new Point2D(4, 2));
+
+        assertFalse(path.isEmpty());
+        assertTrue(path.size() >= 5);
+    }
+
+    @Test
+    void pixelBfs_findsPathOnBlackAndWhiteMaskBuiltFromColourMap() {
+        WritableImage colourMap = new WritableImage(5, 5);
+        PixelWriter writer = colourMap.getPixelWriter();
+
+        for (int y = 0; y < 5; y++) {
+            for (int x = 0; x < 5; x++) {
+                writer.setColor(x, y, Color.WHITE);
+            }
+        }
+
+        for (int x = 0; x < 5; x++) {
+            writer.setColor(x, 2, Color.DODGERBLUE);
+        }
+
+        Image maskImage = MapMaskBuilder.createBlackAndWhiteWalkabilityMap(colourMap);
+        PixelBFS pixelBfs = new PixelBFS();
+        List<Point2D> path = pixelBfs.findShortestPath(maskImage, 5, 5, new Point2D(0, 2), new Point2D(4, 2));
 
         assertFalse(path.isEmpty());
         assertTrue(path.size() >= 5);

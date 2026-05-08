@@ -4,7 +4,6 @@ import javafx.geometry.Point2D;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
-import javafx.scene.paint.Color;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -112,7 +111,6 @@ public class PixelBFS {
         PixelReader pixelReader = image.getPixelReader();
         double scaleX = image.getWidth() / renderedWidth;
         double scaleY = image.getHeight() / renderedHeight;
-        boolean monochromeMap = isMostlyMonochrome(image, pixelReader, traversableBounds, renderedWidth, renderedHeight);
 
         for (int y = 0; y < renderedHeight; y++) {
             for (int x = 0; x < renderedWidth; x++) {
@@ -122,39 +120,19 @@ public class PixelBFS {
 
                 int sourceX = clamp((int) Math.floor(x * scaleX), 0, (int) image.getWidth() - 1);
                 int sourceY = clamp((int) Math.floor(y * scaleY), 0, (int) image.getHeight() - 1);
-                Color color = pixelReader.getColor(sourceX, sourceY);
-                walkable[y][x] = monochromeMap ? isWalkableOnMonochromeMap(color) : isWalkableOnColourMap(color);
+                walkable[y][x] = isWalkable(pixelReader.getArgb(sourceX, sourceY));
             }
         }
 
         return walkable;
     }
 
-    private boolean isWalkableOnMonochromeMap(Color color) {
-        if (color.getOpacity() < 0.95) {
-            return false;
-        }
-
-        return color.getBrightness() >= 0.80;
-    }
-
-    private boolean isWalkableOnColourMap(Color color) {
-        if (color.getOpacity() < 0.95) {
-            return false;
-        }
-
-        double brightness = color.getBrightness();
-        double saturation = color.getSaturation();
-
-        if (brightness < 0.15) {
-            return false;
-        }
-
-        if (saturation >= 0.08) {
-            return true;
-        }
-
-        return brightness >= 0.55 && brightness <= 0.92;
+    private boolean isWalkable(int argb) {
+        int alpha = (argb >>> 24) & 0xFF;
+        int red = (argb >>> 16) & 0xFF;
+        int green = (argb >>> 8) & 0xFF;
+        int blue = argb & 0xFF;
+        return alpha >= 242 && red >= 200 && green >= 200 && blue >= 200;
     }
 
     private Point2D snapToWalkable(boolean[][] walkable, int startX, int startY) {
@@ -205,38 +183,6 @@ public class PixelBFS {
 
     private int clamp(int value, int min, int max) {
         return Math.max(min, Math.min(max, value));
-    }
-
-    private boolean isMostlyMonochrome(Image image,
-                                       PixelReader pixelReader,
-                                       Rectangle2D traversableBounds,
-                                       int renderedWidth,
-                                       int renderedHeight) {
-        long sampleCount = 0;
-        double saturationTotal = 0;
-        int width = (int) image.getWidth();
-        int height = (int) image.getHeight();
-        int stepX = Math.max(1, width / 60);
-        int stepY = Math.max(1, height / 60);
-
-        for (int y = 0; y < height; y += stepY) {
-            for (int x = 0; x < width; x += stepX) {
-                int renderedX = clamp((int) Math.round((double) x * renderedWidth / width), 0, renderedWidth - 1);
-                int renderedY = clamp((int) Math.round((double) y * renderedHeight / height), 0, renderedHeight - 1);
-                if (!isInsideBounds(renderedX, renderedY, traversableBounds)) {
-                    continue;
-                }
-                saturationTotal += pixelReader.getColor(x, y).getSaturation();
-                sampleCount++;
-            }
-        }
-
-        if (sampleCount == 0) {
-            return false;
-        }
-
-        double averageSaturation = saturationTotal / sampleCount;
-        return averageSaturation < 0.06;
     }
 
     private boolean isInsideBounds(int x, int y, Rectangle2D traversableBounds) {

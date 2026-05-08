@@ -21,6 +21,7 @@ import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 import service.RouteService;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -34,20 +35,27 @@ import java.util.concurrent.TimeUnit;
 @State(Scope.Benchmark)
 public class RouteBenchmarks {
 
+    private RouteService routeService;
     private DFS dfs;
     private BFS bfs;
     private Dijkstra dijkstra;
     private Room startRoom;
     private Room endRoom;
+    private Room waypointRoom;
+    private Room avoidRoom;
+    private List<String> preferredArtists;
 
     @Setup(Level.Trial)
     public void setUp() {
-        RouteService routeService = new RouteService();
+        routeService = new RouteService();
         dfs = new DFS();
         bfs = new BFS();
         dijkstra = new Dijkstra();
         startRoom = routeService.findRoomById("2");
         endRoom = routeService.findRoomById("46");
+        waypointRoom = routeService.findRoomById("14");
+        avoidRoom = routeService.findRoomById("12");
+        preferredArtists = List.of("Titian", "Monet");
     }
 
     @Benchmark
@@ -68,6 +76,16 @@ public class RouteBenchmarks {
     @Benchmark
     public Object benchmarkInterestingPathDijkstra() {
         return dijkstra.findMostInterestingPath(startRoom, endRoom);
+    }
+
+    @Benchmark
+    public Object benchmarkServiceShortestPathWithWaypoint() {
+        return routeService.getShortestRouteDijkstra(startRoom, endRoom, List.of(waypointRoom), List.of());
+    }
+
+    @Benchmark
+    public Object benchmarkServiceInterestingPathWithAvoid() {
+        return routeService.getInterestingRoute(startRoom, endRoom, preferredArtists, List.of(), List.of(avoidRoom));
     }
 
     public static void main(String[] args) throws RunnerException {

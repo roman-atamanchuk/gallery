@@ -49,6 +49,9 @@ class SampleGalleryDataTest {
         Graph graph = SampleGalleryData.createFullGraph();
 
         assertEquals(65, graph.getRooms().size());
+        int totalExhibitCount = graph.getRooms().stream()
+                .mapToInt(room -> room.getExhibits().size())
+                .sum();
 
         Room room14 = graph.getRooms().stream()
                 .filter(room -> room.getId().equals("14"))
@@ -58,7 +61,8 @@ class SampleGalleryDataTest {
         assertEquals("Renaissance", room14.getCategory());
         assertEquals(5, room14.getInterestScore());
         assertFalse(room14.getFeaturedArtists().isEmpty());
-        assertFalse(room14.getExhibits().isEmpty());
+        assertTrue(totalExhibitCount >= 120);
+        assertTrue(room14.getExhibits().size() >= 2);
         assertTrue(room14.getConnections().stream().anyMatch(edge -> edge.getDestination().getId().equals("29")));
     }
 }

@@ -19,6 +19,7 @@ import model.Edge;
 import model.Room;
 import service.RoomCoordinateLoader;
 import service.RouteService;
+import util.MapMaskBuilder;
 import util.RouteHelper;
 
 import java.util.ArrayList;
@@ -63,6 +64,8 @@ public class MainController {
 
     private RouteService routeService;
     private PixelBFS pixelBfs;
+    private Image displayedMapImage;
+    private Image pixelTraversalImage;
     private Map<String, Point2D> roomCoordinates;
     private Rectangle2D traversableMapBounds;
     private List<List<Room>> visibleGraphRoutes = List.of();
@@ -80,12 +83,14 @@ public class MainController {
         routeService = new RouteService();
         pixelBfs = new PixelBFS();
         roomCoordinates = RoomCoordinateLoader.loadRoomCoordinates();
+        displayedMapImage = mapImageView.getImage();
         populateRoomSelectors();
         populateGraphOverview();
         resizeCanvasToImage();
         traversableMapBounds = buildTraversableBounds();
+        pixelTraversalImage = MapMaskBuilder.createBlackAndWhiteWalkabilityMap(displayedMapImage);
         redrawOverlay();
-        resultArea.setText("Main-floor graph loaded from resource data. Choose rooms and optional route constraints.");
+        resultArea.setText("Main-floor graph loaded. Choose rooms or exhibits, then compare route types or run pixel BFS on the map.");
     }
 
     /**
@@ -194,9 +199,8 @@ public class MainController {
             return;
         }
 
-        Image image = mapImageView.getImage();
         List<Point2D> pixelRoute = pixelBfs.findShortestPath(
-                image,
+                pixelTraversalImage,
                 (int) Math.round(routeCanvas.getWidth()),
                 (int) Math.round(routeCanvas.getHeight()),
                 pixelStartPoint,
@@ -216,6 +220,25 @@ public class MainController {
                             + "Estimated distance: " + (pixelRoute.size() - 1) + " pixels"
             );
         }
+    }
+
+    /**
+     * Switches the visible map between the gallery image and the black-and-white
+     * walkability map used by pixel BFS.
+     */
+    @FXML
+    public void onToggleMapMode() {
+        Image normalMapImage = displayedMapImage;
+        if (mapImageView.getImage() == pixelTraversalImage) {
+            mapImageView.setImage(normalMapImage);
+            resultArea.setText("Showing the normal gallery map.");
+        } else {
+            mapImageView.setImage(pixelTraversalImage);
+            resultArea.setText("Showing the black-and-white walkability map used for pixel BFS.");
+        }
+        resizeCanvasToImage();
+        traversableMapBounds = buildTraversableBounds();
+        redrawOverlay();
     }
 
     /**

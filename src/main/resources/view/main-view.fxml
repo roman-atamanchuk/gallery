@@ -26,7 +26,7 @@
                 <Insets top="16.0" right="16.0" bottom="16.0" left="16.0"/>
             </padding>
             <Label styleClass="screen-title" text="National Gallery Route Finder"/>
-            <Label text="UI placeholder for room selection, route options, and output."/>
+            <Label text="Choose rooms or exhibits, compare route strategies, and inspect graph or pixel-based paths on the map." wrapText="true"/>
         </VBox>
     </top>
 
@@ -35,16 +35,17 @@
             <padding>
                 <Insets top="16.0" right="16.0" bottom="16.0" left="16.0"/>
             </padding>
-            <Label text="Start Room"/>
+            <Label text="Start Location"/>
             <ComboBox fx:id="startRoomComboBox" promptText="Choose a starting room"/>
-            <Label text="End Room"/>
+            <Label text="End Location"/>
             <ComboBox fx:id="endRoomComboBox" promptText="Choose a destination room"/>
+            <Label text="Selectors include both rooms and exhibits." wrapText="true"/>
             <Label text="Preferred Artists"/>
             <TextField fx:id="preferredArtistsField" promptText="Optional comma-separated artist preferences"/>
             <Label text="Waypoint Rooms"/>
-            <TextField fx:id="waypointRoomsField" promptText="Optional room ids, e.g. 14, 29, Central Hall"/>
+            <TextField fx:id="waypointRoomsField" promptText="Optional room or exhibit ids, e.g. 14, EX-14-1"/>
             <Label text="Avoid Rooms"/>
-            <TextField fx:id="avoidRoomsField" promptText="Optional room ids to avoid"/>
+            <TextField fx:id="avoidRoomsField" promptText="Optional room or exhibit ids to avoid"/>
             <Label text="Max Routes"/>
             <TextField fx:id="maxRoutesField" promptText="Optional route limit for DFS results"/>
             <Label text="Pixel Route"/>
@@ -52,6 +53,7 @@
                 <Button onAction="#onSetPixelStartMode" text="Pick Pixel Start"/>
                 <Button onAction="#onSetPixelEndMode" text="Pick Pixel End"/>
             </HBox>
+            <Button onAction="#onToggleMapMode" text="Toggle B&amp;W Map"/>
             <Button onAction="#onFindPixelRoute" text="Find Pixel BFS"/>
             <HBox spacing="10.0">
                 <Button onAction="#onFindRoute" text="Find Routes"/>
