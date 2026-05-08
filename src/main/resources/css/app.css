@@ -1,0 +1,8 @@
+.root {
+    -fx-font-family: "Arial";
+}
+
+.screen-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}

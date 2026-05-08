@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.MainController"
+            stylesheets="@../css/app.css">
+    <top>
+        <VBox spacing="10.0" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets top="16.0" right="16.0" bottom="16.0" left="16.0"/>
+            </padding>
+            <Label styleClass="screen-title" text="National Gallery Route Finder"/>
+            <Label text="UI placeholder for room selection, route options, and output."/>
+        </VBox>
+    </top>
+
+    <left>
+        <VBox spacing="12.0">
+            <padding>
+                <Insets top="16.0" right="16.0" bottom="16.0" left="16.0"/>
+            </padding>
+            <Label text="Start Room"/>
+            <ComboBox fx:id="startRoomComboBox" promptText="Choose a starting room"/>
+            <Label text="End Room"/>
+            <ComboBox fx:id="endRoomComboBox" promptText="Choose a destination room"/>
+            <Label text="Preferred Artists"/>
+            <TextField fx:id="preferredArtistsField" promptText="Optional comma-separated artist preferences"/>
+            <Label text="Waypoint Rooms"/>
+            <TextField fx:id="waypointRoomsField" promptText="Optional room ids, e.g. 14, 29, Central Hall"/>
+            <Label text="Avoid Rooms"/>
+            <TextField fx:id="avoidRoomsField" promptText="Optional room ids to avoid"/>
+            <Label text="Max Routes"/>
+            <TextField fx:id="maxRoutesField" promptText="Optional route limit for DFS results"/>
+            <Label text="Pixel Route"/>
+            <HBox spacing="10.0">
+                <Button onAction="#onSetPixelStartMode" text="Pick Pixel Start"/>
+                <Button onAction="#onSetPixelEndMode" text="Pick Pixel End"/>
+            </HBox>
+            <Button onAction="#onFindPixelRoute" text="Find Pixel BFS"/>
+            <HBox spacing="10.0">
+                <Button onAction="#onFindRoute" text="Find Routes"/>
+                <Button onAction="#onFindShortest" text="Find Shortest"/>
+                <Button onAction="#onFindInteresting" text="Find Interesting"/>
+            </HBox>
+        </VBox>
+    </left>
+
+    <center>
+        <ScrollPane fitToWidth="true" fitToHeight="true" pannable="true">
+            <content>
+                <StackPane>
+                    <children>
+                        <ImageView fx:id="mapImageView" fitWidth="760.0" onMouseClicked="#onMapClicked" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/level2-map.png"/>
+                            </image>
+                        </ImageView>
+                        <Canvas fx:id="routeCanvas" height="1075.0" onMouseClicked="#onMapClicked" width="760.0"/>
+                    </children>
+                </StackPane>
+            </content>
+        </ScrollPane>
+    </center>
+
+    <right>
+        <VBox spacing="12.0" prefWidth="320.0">
+            <padding>
+                <Insets top="16.0" right="16.0" bottom="16.0" left="16.0"/>
+            </padding>
+            <Label text="Route Results"/>
+            <TextArea fx:id="resultArea" editable="false" prefHeight="220.0" promptText="Route output will appear here later." wrapText="true"/>
+            <Label text="Graph Overview"/>
+            <ListView fx:id="graphOverviewListView" prefHeight="220.0"/>
+        </VBox>
+    </right>
+</BorderPane>

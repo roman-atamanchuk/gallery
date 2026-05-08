@@ -1,0 +1,66 @@
+id,name,category,interest_score,featured_artists
+1,Room 1 Exhibition,Exhibition,3,
+Sunley Room,Sunley Room Exhibition,Exhibition,3,
+2,Renaissance Room 2,Renaissance,5,Bronzino|Holbein|Michelangelo|Titian|Veronese
+4,Renaissance Room 4,Renaissance,5,Bronzino|Holbein|Michelangelo|Titian|Veronese
+5,Renaissance Room 5,Renaissance,5,Bronzino|Holbein|Michelangelo|Titian|Veronese
+6,Renaissance Room 6,Renaissance,5,Bronzino|Holbein|Michelangelo|Titian|Veronese
+7,Renaissance Room 7,Renaissance,5,Bronzino|Holbein|Michelangelo|Titian|Veronese
+8,Renaissance Room 8,Renaissance,5,Bronzino|Holbein|Michelangelo|Titian|Veronese
+9,Renaissance Room 9,Renaissance,5,Bronzino|Holbein|Michelangelo|Titian|Veronese
+10,Renaissance Room 10,Renaissance,5,Bronzino|Holbein|Michelangelo|Titian|Veronese
+11,Renaissance Room 11,Renaissance,5,Bronzino|Holbein|Michelangelo|Titian|Veronese
+12,Renaissance Room 12,Renaissance,5,Bronzino|Holbein|Michelangelo|Titian|Veronese
+14,Renaissance Room 14,Renaissance,5,Bronzino|Holbein|Michelangelo|Titian|Veronese
+15,Baroque Room 15,Baroque,4,Artemisia|Caravaggio|Rembrandt|Velazquez|Vermeer
+15a,Baroque Room 15a,Baroque,4,Artemisia|Caravaggio|Rembrandt|Velazquez|Vermeer
+16,Baroque Room 16,Baroque,4,Artemisia|Caravaggio|Rembrandt|Velazquez|Vermeer
+17,Baroque Room 17,Baroque,4,Artemisia|Caravaggio|Rembrandt|Velazquez|Vermeer
+17a,Baroque Room 17a,Baroque,4,Artemisia|Caravaggio|Rembrandt|Velazquez|Vermeer
+18,Baroque Room 18,Baroque,4,Artemisia|Caravaggio|Rembrandt|Velazquez|Vermeer
+19,Baroque Room 19,Baroque,4,Artemisia|Caravaggio|Rembrandt|Velazquez|Vermeer
+20,Baroque Room 20,Baroque,4,Artemisia|Caravaggio|Rembrandt|Velazquez|Vermeer
+21,Baroque Room 21,Baroque,4,Artemisia|Caravaggio|Rembrandt|Velazquez|Vermeer
+22,Baroque Room 22,Baroque,4,Artemisia|Caravaggio|Rembrandt|Velazquez|Vermeer
+23,Baroque Room 23,Baroque,4,Artemisia|Caravaggio|Rembrandt|Velazquez|Vermeer
+24,Baroque Room 24,Baroque,4,Artemisia|Caravaggio|Rembrandt|Velazquez|Vermeer
+25,Baroque Room 25,Baroque,4,Artemisia|Caravaggio|Rembrandt|Velazquez|Vermeer
+26,Baroque Room 26,Baroque,4,Artemisia|Caravaggio|Rembrandt|Velazquez|Vermeer
+27,Baroque Room 27,Baroque,4,Artemisia|Caravaggio|Rembrandt|Velazquez|Vermeer
+28,Baroque Room 28,Baroque,4,Artemisia|Caravaggio|Rembrandt|Velazquez|Vermeer
+29,Baroque Room 29,Baroque,4,Artemisia|Caravaggio|Rembrandt|Velazquez|Vermeer
+30,Baroque Room 30,Baroque,4,Artemisia|Caravaggio|Rembrandt|Velazquez|Vermeer
+31,Baroque Room 31,Baroque,4,Artemisia|Caravaggio|Rembrandt|Velazquez|Vermeer
+32,The Julia and Hans Rausing Room,Baroque,4,Artemisia|Caravaggio|Rembrandt|Velazquez|Vermeer
+Central Hall,Central Hall,Rococo to Romanticism,3,Canaletto|Drouais|Gainsborough|Hogarth|Stubbs
+33,Blavatnik Family Foundation Room,Rococo to Romanticism,3,Canaletto|Drouais|Gainsborough|Hogarth|Stubbs
+34,Rococo to Romanticism Room 34,Rococo to Romanticism,3,Canaletto|Drouais|Gainsborough|Hogarth|Stubbs
+35,Rococo to Romanticism Room 35,Rococo to Romanticism,3,Canaletto|Drouais|Gainsborough|Hogarth|Stubbs
+36,Rococo to Romanticism Room 36,Rococo to Romanticism,3,Canaletto|Drouais|Gainsborough|Hogarth|Stubbs
+37,Rococo to Romanticism Room 37,Rococo to Romanticism,3,Canaletto|Drouais|Gainsborough|Hogarth|Stubbs
+38,Towards Modernism Room 38,Towards Modernism,5,Cezanne|Turner|Monet|Seurat|Van Gogh
+39,Towards Modernism Room 39,Towards Modernism,5,Cezanne|Turner|Monet|Seurat|Van Gogh
+40,Towards Modernism Room 40,Towards Modernism,5,Cezanne|Turner|Monet|Seurat|Van Gogh
+41,Towards Modernism Room 41,Towards Modernism,5,Cezanne|Turner|Monet|Seurat|Van Gogh
+42,Towards Modernism Room 42,Towards Modernism,5,Cezanne|Turner|Monet|Seurat|Van Gogh
+43,Towards Modernism Room 43,Towards Modernism,5,Cezanne|Turner|Monet|Seurat|Van Gogh
+44,Towards Modernism Room 44,Towards Modernism,5,Cezanne|Turner|Monet|Seurat|Van Gogh
+45,The Wohl Galleries,Towards Modernism,5,Cezanne|Turner|Monet|Seurat|Van Gogh
+46,Towards Modernism Room 46,Towards Modernism,5,Cezanne|Turner|Monet|Seurat|Van Gogh
+51,Medieval and Early Renaissance Room 51,Medieval and Early Renaissance,4,Bellini|Botticelli|Leonardo|Piero della Francesca|Van Eyck
+51a,Medieval and Early Renaissance Room 51a,Medieval and Early Renaissance,4,Bellini|Botticelli|Leonardo|Piero della Francesca|Van Eyck
+52,Medieval and Early Renaissance Room 52,Medieval and Early Renaissance,4,Bellini|Botticelli|Leonardo|Piero della Francesca|Van Eyck
+53,Medieval and Early Renaissance Room 53,Medieval and Early Renaissance,4,Bellini|Botticelli|Leonardo|Piero della Francesca|Van Eyck
+54,Medieval and Early Renaissance Room 54,Medieval and Early Renaissance,4,Bellini|Botticelli|Leonardo|Piero della Francesca|Van Eyck
+55,Medieval and Early Renaissance Room 55,Medieval and Early Renaissance,4,Bellini|Botticelli|Leonardo|Piero della Francesca|Van Eyck
+56,Medieval and Early Renaissance Room 56,Medieval and Early Renaissance,4,Bellini|Botticelli|Leonardo|Piero della Francesca|Van Eyck
+57,Medieval and Early Renaissance Room 57,Medieval and Early Renaissance,4,Bellini|Botticelli|Leonardo|Piero della Francesca|Van Eyck
+58,Medieval and Early Renaissance Room 58,Medieval and Early Renaissance,4,Bellini|Botticelli|Leonardo|Piero della Francesca|Van Eyck
+59,Medieval and Early Renaissance Room 59,Medieval and Early Renaissance,4,Bellini|Botticelli|Leonardo|Piero della Francesca|Van Eyck
+60,Medieval and Early Renaissance Room 60,Medieval and Early Renaissance,4,Bellini|Botticelli|Leonardo|Piero della Francesca|Van Eyck
+61,Medieval and Early Renaissance Room 61,Medieval and Early Renaissance,4,Bellini|Botticelli|Leonardo|Piero della Francesca|Van Eyck
+62,Medieval and Early Renaissance Room 62,Medieval and Early Renaissance,4,Bellini|Botticelli|Leonardo|Piero della Francesca|Van Eyck
+63,Medieval and Early Renaissance Room 63,Medieval and Early Renaissance,4,Bellini|Botticelli|Leonardo|Piero della Francesca|Van Eyck
+64,Medieval and Early Renaissance Room 64,Medieval and Early Renaissance,4,Bellini|Botticelli|Leonardo|Piero della Francesca|Van Eyck
+65,Medieval and Early Renaissance Room 65,Medieval and Early Renaissance,4,Bellini|Botticelli|Leonardo|Piero della Francesca|Van Eyck
+66,Medieval and Early Renaissance Room 66,Medieval and Early Renaissance,4,Bellini|Botticelli|Leonardo|Piero della Francesca|Van Eyck
