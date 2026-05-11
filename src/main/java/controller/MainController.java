@@ -23,6 +23,7 @@ import util.MapMaskBuilder;
 import util.RouteHelper;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -42,10 +43,10 @@ public class MainController {
     private TextField preferredArtistsField;
 
     @FXML
-    private TextField waypointRoomsField;
+    private ComboBox<String> waypointRoomsComboBox;
 
     @FXML
-    private TextField avoidRoomsField;
+    private ComboBox<String> avoidRoomsComboBox;
 
     @FXML
     private TextField maxRoutesField;
@@ -282,23 +283,48 @@ public class MainController {
     }
 
     private void populateRoomSelectors() {
-        List<String> roomOptions = routeService.getSelectableLocations();
+        List<String> roomOptions = routeService.getGraph().getRooms().stream()
+                .filter(room -> room.getId().matches("\\d+"))
+                .sorted(Comparator.comparingInt(room -> Integer.parseInt(room.getId())))
+                .map(room -> room.getId() + " - " + room.getName() + " [" + room.getCategory() + "]")
+                .toList();
+        List<String> optionalRoomOptions = new ArrayList<>();
+        optionalRoomOptions.add("None");
+        optionalRoomOptions.addAll(roomOptions);
 
         startRoomComboBox.setItems(FXCollections.observableArrayList(roomOptions));
         endRoomComboBox.setItems(FXCollections.observableArrayList(roomOptions));
+        waypointRoomsComboBox.setItems(FXCollections.observableArrayList(optionalRoomOptions));
+        avoidRoomsComboBox.setItems(FXCollections.observableArrayList(optionalRoomOptions));
 
         if (!roomOptions.isEmpty()) {
             startRoomComboBox.getSelectionModel().selectFirst();
             endRoomComboBox.getSelectionModel().selectLast();
         }
+        waypointRoomsComboBox.getSelectionModel().selectFirst();
+        avoidRoomsComboBox.getSelectionModel().selectFirst();
     }
 
     private List<Room> parseWaypointRooms() {
-        return RouteHelper.parseRoomSelections(routeService.getGraph().getRooms(), waypointRoomsField.getText());
+        return RouteHelper.parseRoomSelections(routeService.getGraph().getRooms(), getComboBoxInput(waypointRoomsComboBox));
     }
 
     private List<Room> parseAvoidRooms() {
-        return RouteHelper.parseRoomSelections(routeService.getGraph().getRooms(), avoidRoomsField.getText());
+        return RouteHelper.parseRoomSelections(routeService.getGraph().getRooms(), getComboBoxInput(avoidRoomsComboBox));
+    }
+
+    private String getComboBoxInput(ComboBox<String> comboBox) {
+        if (comboBox == null) {
+            return "";
+        }
+
+        String editorText = comboBox.getEditor().getText();
+        if (editorText != null && !editorText.isBlank()) {
+            return editorText;
+        }
+
+        String selectedValue = comboBox.getValue();
+        return selectedValue == null ? "" : selectedValue;
     }
 
     private void resizeCanvasToImage() {

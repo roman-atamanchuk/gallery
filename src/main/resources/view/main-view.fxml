@@ -39,13 +39,13 @@
             <ComboBox fx:id="startRoomComboBox" promptText="Choose a starting room"/>
             <Label text="End Location"/>
             <ComboBox fx:id="endRoomComboBox" promptText="Choose a destination room"/>
-            <Label text="Selectors include both rooms and exhibits." wrapText="true"/>
+            <Label text="Selectors use whole-number room choices from the gallery graph." wrapText="true"/>
             <Label text="Preferred Artists"/>
             <TextField fx:id="preferredArtistsField" promptText="Optional comma-separated artist preferences"/>
             <Label text="Waypoint Rooms"/>
-            <TextField fx:id="waypointRoomsField" promptText="Optional room or exhibit ids, e.g. 14, EX-14-1"/>
+            <ComboBox fx:id="waypointRoomsComboBox" editable="true" promptText="Choose None, or type room ids, e.g. 10, 11"/>
             <Label text="Avoid Rooms"/>
-            <TextField fx:id="avoidRoomsField" promptText="Optional room or exhibit ids to avoid"/>
+            <ComboBox fx:id="avoidRoomsComboBox" editable="true" promptText="Choose None, or type room ids to avoid"/>
             <Label text="Max Routes"/>
             <TextField fx:id="maxRoutesField" promptText="Optional route limit for DFS results"/>
             <Label text="Pixel Route"/>
